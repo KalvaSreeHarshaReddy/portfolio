@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sree Harsha Reddy — Software Engineer</title>
+<meta name="description" content="Sree Harsha Reddy — IT graduate building AI, web, and Android applications. Featuring SignCare, a real-time Indian Sign Language translation platform.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sree Harsha Reddy — Software Engineer">
+<meta property="og:description" content="AI, web, and Android projects — featuring SignCare, a real-time Indian Sign Language translation platform.">
+<meta property="og:image" content="https://placehold.co/1200x630/0b1e3d/ffffff?text=Sree+Harsha+Reddy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sree Harsha Reddy — Software Engineer">
+<meta name="twitter:description" content="AI, web, and Android projects — featuring SignCare, a real-time Indian Sign Language translation platform.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230071e3'/%3E%3Ctext x='50' y='68' font-size='52' font-family='-apple-system,Helvetica,Arial,sans-serif' font-weight='700' fill='white' text-anchor='middle'%3ESH%3C/text%3E%3C/svg%3E">
 <style>
   :root{
     --bg:#fbfbfd;
@@ -186,14 +195,24 @@
   .featured-links{display:flex;gap:12px;flex-wrap:wrap;}
   .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
   .chip{font-size:12.5px;padding:6px 12px;border-radius:980px;background:rgba(255,255,255,0.12);color:#fff;}
-  .featured-visual{
-    aspect-ratio:1/1;border-radius:22px;
-    background:radial-gradient(circle at 35% 30%,rgba(255,255,255,0.18),transparent 60%),
-               linear-gradient(160deg,rgba(255,255,255,0.06),rgba(255,255,255,0.01));
-    border:1px solid rgba(255,255,255,0.14);
-    display:flex;align-items:center;justify-content:center;
-    font-size:15px;color:#c6d3f5;text-align:center;padding:24px;
+  .stat-row{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:26px;}
+  .stat-num{font-size:20px;font-weight:700;color:#fff;letter-spacing:-0.01em;}
+  .stat-label{font-size:12.5px;color:#a9b8dd;margin-top:2px;}
+  .pipeline-visual{
+    background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);
+    border-radius:18px;padding:26px 20px;display:flex;flex-direction:column;gap:18px;
   }
+  .pipeline-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .pnode{
+    background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);
+    border-radius:12px;padding:10px 12px;font-size:12.5px;color:#e6ecfb;
+    text-align:center;line-height:1.35;flex:1;min-width:78px;
+  }
+  .pnode span{display:block;font-size:11px;color:#a9b8dd;margin-top:2px;}
+  .pnode.pend{background:rgba(0,113,227,0.25);border-color:rgba(0,113,227,0.5);font-weight:600;}
+  .parrow{color:#a9b8dd;font-size:14px;flex:0 0 auto;}
+  .pipeline-note{font-size:12.5px;color:#a9b8dd;margin:4px 0 0;line-height:1.5;}
+  @media (max-width:520px){ .parrow{display:none;} .pipeline-row{flex-direction:column;align-items:stretch;} }
   @media (max-width:800px){ .featured{grid-template-columns:1fr;padding:40px 26px;} }
 
   .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
@@ -373,12 +392,31 @@
           <span class="chip">Python</span><span class="chip">TensorFlow/Keras</span><span class="chip">OpenCV</span>
           <span class="chip">MediaPipe</span><span class="chip">Streamlit</span><span class="chip">NLTK</span>
         </div>
-        <p>An end-to-end Indian Sign Language platform enabling real-time gesture-to-text recognition and speech-to-ISL translation, supporting Telugu and English. A Keras neural network classifies gestures from MediaPipe hand-landmark features (126-dim, two-hand pose) through a Streamlit + WebRTC pipeline, while a speech-to-ISL pipeline uses Google Speech Recognition and NLTK preprocessing to sequence and auto-concatenate matching ISL videos — with frame-skipping and prediction smoothing for fast, offline-capable inference.</p>
+        <p>An end-to-end Indian Sign Language platform that translates in both directions: gestures to text, and speech to sign-language video — built for real-time use, not a lab demo.</p>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-num">126-dim</div><div class="stat-label">hand-landmark features</div></div>
+          <div class="stat"><div class="stat-num">2</div><div class="stat-label">languages: Telugu + English</div></div>
+          <div class="stat"><div class="stat-num">2-way</div><div class="stat-label">gesture ⇄ speech translation</div></div>
+        </div>
         <div class="featured-links">
           <a href="https://github.com/Kalvasreeharsha/SignCare" target="_blank" class="btn btn-primary">View on GitHub</a>
         </div>
       </div>
-      <div class="featured-visual">Real-time Gesture ⇄ Speech ⇄ ISL Video<br>translation pipeline</div>
+      <div class="pipeline-visual">
+        <div class="pipeline-row">
+          <div class="pnode">Camera</div><div class="parrow">→</div>
+          <div class="pnode">MediaPipe<br><span>hand landmarks</span></div><div class="parrow">→</div>
+          <div class="pnode">Keras model<br><span>gesture classify</span></div><div class="parrow">→</div>
+          <div class="pnode pend">Text</div>
+        </div>
+        <div class="pipeline-row">
+          <div class="pnode">Mic</div><div class="parrow">→</div>
+          <div class="pnode">Speech<br><span>recognition</span></div><div class="parrow">→</div>
+          <div class="pnode">NLTK<br><span>preprocessing</span></div><div class="parrow">→</div>
+          <div class="pnode pend">ISL video</div>
+        </div>
+        <p class="pipeline-note">Frame-skipping and prediction smoothing keep both directions fast and offline-capable.</p>
+      </div>
     </div>
 
     <div class="proj-grid">
@@ -431,7 +469,7 @@
         <span class="label">Phone</span>
         <span class="value">+91 83284 70639</span>
       </a>
-      <a class="contact-card" href="https://www.linkedin.com/in/sree-harsha-reddy-kalva-b1b3a6358/" target="_blank">
+      <a class="contact-card" href="https://linkedin.com/in/KSreeHarshaReddy" target="_blank">
         <span class="label">LinkedIn</span>
         <span class="value">linkedin.com/KSreeHarshaReddy</span>
       </a>
